@@ -1,0 +1,54 @@
+@startuml
+class Customer{
+    -name : String
+    -phonenum : String
+    -address: String
+    -pet: Pet
+    -customerID : int
+
+    +contact_SaveSys(void): Center_Info
+    +appoint_Center(void): bool
+    +review_Center(Centername: string): void
+
+}
+
+class SaveSystem{
+    -CeneterList: List<Ceneter_Info>
+
+    +return_Ceneterlist(find_adress): List<Ceneter_Info>
+    +return_review() : String
+}
+class AppointSystem{
+    -Patient_Info: Patient_Info
+    
+    +request_appoint(void): void
+    
+}
+class ReviewSystem{
+    -Center_Info: Ceneter_Info
+    -Center_Review: String
+
+    +save_review(Ceneter_Review: String): void
+    +return_review(Ceneter_Review: String): String
+}
+class Center{
+    -name: String
+    -adress: String
+    -number: String
+    -review: List<Center_Review>
+    
+    +accept_appoint(patient_info, time): string
+}
+
+' relationship
+' many to many relationship
+Customer "*" --o "1" SaveSystem : Requesting Info >
+Customer "*" --o "1" SaveSystem : Give Info <
+Customer "*" --o "1" AppointSystem : Appoint >
+AppointSystem "*" --o "1" Center : New appoint >
+Center "*" --o "1" AppointSystem : Accept >
+AppointSystem "*" --o "1" Customer : Appoint Complete >
+Customer "*" --o "1" ReviewSystem : Write Review >
+ReviewSystem "*" --o "1" SaveSystem : Save Review >
+SaveSystem "*" --o "1" Center : Return Review >
+@enduml

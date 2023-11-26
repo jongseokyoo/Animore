@@ -1,0 +1,29 @@
+@startuml
+
+actor Customer
+participant "Save System"
+participant "Appointment System"
+participant "Review System"
+actor Center
+
+Customer --> "Save System" : Request saved Center info
+activate "Save System"
+"Save System" --> Customer : Return saved Center info
+deactivate "Save System"
+
+Customer --> "Appointment System" : Appointment Ceneter
+activate "Appointment System"
+"Appointment System" --> Center : Return  Customer info to Center
+Center --> "Appointment System" : Appointed
+"Appointment System" --> Customer : Appointed
+deactivate "Appointment System"
+Customer --> "Review System" : Review Center
+activate "Review System"
+"Review System" --> "Save System" : Save Center Review
+deactivate "Review System"
+activate "Save System"
+"Save System" --> Center : Return Review
+deactivate "Save System"
+
+
+@enduml

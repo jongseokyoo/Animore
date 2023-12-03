@@ -11,7 +11,11 @@ class Customer{
     +review_Center(Centername: string): void
 
 }
-
+class Pet{
+    -name: String
+    -age: int
+    -type: String
+}
 class SaveSystem{
     -CeneterList: List<Ceneter_Info>
 
@@ -42,6 +46,7 @@ class Center{
 
 ' relationship
 ' many to many relationship
+Pet "*" --o "1" Customer : Using create Customer object >
 Customer "*" --o "1" SaveSystem : Requesting Info >
 Customer "*" --o "1" SaveSystem : Give Info <
 Customer "*" --o "1" AppointSystem : Appoint >

@@ -22,11 +22,14 @@ class ReviewSystem:
             self.centers[center_name]['average_rating'] = average_rating
 
             # Update the center_list with the new reviews
-            for center in center_list: #리뷰 넣는식 에러..
-                if center[0] == center_name:
-                    center[3] = average_rating
-                    center[4] = reviews  
-                    break
+            for center in center_list:
+               if center[0] == center_name:
+                if len(center) >= 6:
+                    center[4] = average_rating
+                    center[5] = reviews
+                else:
+                    center.extend([average_rating, reviews])
+                break
 
             print(f"{center_name}의 리뷰가 추가 되었습니다!")
         else:
